@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Booking - TravelBooking</title>
+    <link rel="stylesheet" href="buses.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Filters</h2>
+            <div class="filter-section">
+                <h4>Bus Type</h4>
+                <label><input type="checkbox"> Sleeper</label>
+                <label><input type="checkbox"> Semi-Sleeper</label>
+                <label><input type="checkbox"> AC</label>
+            </div>
+            <div class="filter-section">
+                <h4>Departure Time</h4>
+                <button>12am - 6am</button>
+                <button>6am - 12pm</button>
+                <button>12pm - 6pm</button>
+                <button>6pm - 12am</button>
+            </div>
+        </aside>
+
+        <!-- Bus Listings -->
+        <main class="bus-list">
+            <div class="bus-item">
+                <h3>Cityline Express</h3>
+                <p>AC Sleeper</p>
+                <span>₹800</span>
+                <button class="book-button" onclick="goToPayment('Cityline Express', '800')">Book Now</button>
+            </div>
+            <div class="bus-item">
+                <h3>Super Luxury</h3>
+                <p>Non AC Seater 2+2 Push Back</p>
+                <span>₹443</span>
+                <button class="book-button" onclick="goToPayment('Super Luxury', '443')">Book Now</button>
+            </div>
+            <div class="bus-item">
+                <h3>LAHARI</h3>
+                <p>A/C SLEEPER CUM SEATER</p>
+                <span>₹532</span>
+                <button class="book-button" onclick="goToPayment('LAHARI', '532')">Book Now</button>
+            </div>
+            <!-- Repeat bus-item blocks for more buses -->
+        </main>
+    </div>
+
+    <script>
+        function goToPayment(busName, price) {
+            const url = `payment.php?ticketName=${busName}&ticketPrice=${price}`;
+            window.location.href = url;
+        }
+    </script>
+</body>
+</html>

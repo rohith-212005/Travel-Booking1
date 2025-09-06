@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Booking - TravelBooking</title>
+    <link rel="stylesheet" href="trains.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Filter Sidebar -->
+        <aside class="sidebar">
+            <div class="filter-section">
+                <h4>Train Class</h4>
+                <label><input type="checkbox"> 3rd Class AC - 3A</label>
+                <label><input type="checkbox"> Sleeper - SL</label>
+                <label><input type="checkbox"> AC Chair Car - CC</label>
+            </div>
+            <div class="filter-section">
+                <h4>Arrival Time</h4>
+                <button>12am - 6am</button>
+                <button>6am - 12pm</button>
+                <button>12pm - 6pm</button>
+                <button>6pm - 12am</button>
+            </div>
+        </aside>
+
+        <!-- Train Listings -->
+        <main class="train-list">
+            <div class="train">
+                <div class="train-header">
+                    <h2>Express Train 101</h2>
+                    <span>Depart: SMTWTFS</span>
+                </div>
+                <div class="train-details">
+                    <div class="class">
+                        <p>3A</p>
+                        <span>₹550</span>
+                        <p>Available 5</p>
+                        <button class="book-now" data-train="Express Train 101" data-price="₹550">Book Now</button>
+                    </div>
+                    <div class="class">
+                        <p>SL</p>
+                        <span>₹180</span>
+                        <p>Available 10</p>
+                        <button class="book-now" data-train="Express Train 101" data-price="₹180">Book Now</button>
+                    </div>
+                    <div class="class">
+                        <p>CC</p>
+                        <span>₹840</span>
+                        <p>Available 8</p>
+                        <button class="book-now" data-train="Express Train 101" data-price="₹840">Book Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="train">
+                <div class="train-header">
+                    <h2>Morning Express</h2>
+                    <span>Depart: SMTWTFS</span>
+                </div>
+                <div class="train-details">
+                    <div class="class">
+                        <p>3A</p>
+                        <span>₹570</span>
+                        <p>Available 7</p>
+                        <button class="book-now" data-train="Morning Express" data-price="₹570">Book Now</button>
+                    </div>
+                    <div class="class">
+                        <p>2A</p>
+                        <span>₹760</span>
+                        <p>Available 5</p>
+                        <button class="book-now" data-train="Morning Express" data-price="₹760">Book Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="train">
+                <div class="train-header">
+                    <h2>City Express</h2>
+                    <span>Depart: SMTWTFS</span>
+                </div>
+                <div class="train-details">
+                    <div class="class">
+                        <p>2A</p>
+                        <span>₹750</span>
+                        <p>Available 8</p>
+                        <button class="book-now" data-train="City Express" data-price="₹750">Book Now</button>
+                    </div>
+                    <div class="class">
+                        <p>3A</p>
+                        <span>₹550</span>
+                        <p>Available 6</p>
+                        <button class="book-now" data-train="City Express" data-price="₹550">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Repeat similar structure for each train -->
+
+        </main>
+    </div>
+
+    <script>
+        // Handle the "Book Now" button click and navigate to the payment page with train details
+        document.querySelectorAll('.book-now').forEach(button => {
+            button.addEventListener('click', function () {
+                const trainName = this.getAttribute('data-train');
+                const price = this.getAttribute('data-price');
+                window.location.href = `payment.php?ticketName=${encodeURIComponent(trainName)}&ticketPrice=${encodeURIComponent(price)}`;
+            });
+        });
+    </script>
+</body>
+
+</html>

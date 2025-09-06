@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Travel Booking</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">Travel Booking</div>
+    </nav>
+
+    <!-- Login Form -->
+    <form action="index.php" method="post">
+        <div>
+
+            <h1>Login</h1>
+            <br>
+
+            <input type="text" placeholder="Username" id="username" name="username" required>
+            <br>   <br>
+
+            <input type="password" placeholder="Password" id="password" name="password" required>
+            <br>  <br>
+
+            <input type="checkbox" name="remember_me"> Remember me
+            <br> <br>
+
+            <input type="submit" value="Login" id="submit">
+            <br> <br>
+
+            <p>Don't have an account? <a href="register.html" target="_main">Register</a></p>
+            <?php if (!empty($error_message)): ?>
+                <p class="error-message"><?= htmlspecialchars($error_message); ?></p>
+            <?php endif; ?>
+
+        </div>
+    </form>
+
+</body>
+</html>

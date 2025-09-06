@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cab Booking - TravelBooking</title>
+    <link rel="stylesheet" href="cabs.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Filters</h2>
+            <div class="filter-section">
+                <h4>Car Type</h4>
+                <label><input type="checkbox"> Sedan</label>
+                <label><input type="checkbox"> SUV</label>
+                <label><input type="checkbox"> Hatchback</label>
+            </div>
+            <div class="filter-section">
+                <h4>Rental Type</h4>
+                <label><input type="checkbox"> Full-Day</label>
+                <label><input type="checkbox"> Hourly</label>
+            </div>
+        </aside>
+
+        <!-- Cab Listings -->
+        <main class="cab-list">
+            <div class="cab-item">
+                <h3>City Taxi</h3>
+                <p>Type: Sedan</p>
+                <span>₹500/day</span>
+                <button class="book-button" onclick="goToPayment('City Taxi', '500')">Book Now</button>
+            </div>
+            <div class="cab-item">
+                <h3>Luxury SUV</h3>
+                <p>Type: Sedan</p>
+                <span>₹700/day</span>
+                <button class="book-button" onclick="goToPayment('Luxury SUV', '700')">Book Now</button>
+            </div>
+            <div class="cab-item">
+                <h3>Executive Sedan</h3>
+                <p>Type: Sedan</p>
+                <span>₹900/day</span>
+                <button class="book-button" onclick="goToPayment('Executive Sedan', '900')">Book Now</button>
+            </div>
+            <!-- Repeat cab-item blocks for more cabs -->
+        </main>
+    </div>
+
+    <script>
+        function goToPayment(cabName, price) {
+            const url = `payment.php?ticketName=${cabName}&ticketPrice=${price}`;
+            window.location.href = url;
+        }
+    </script>
+</body>
+</html>

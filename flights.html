@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Booking - BookMyTickets</title>
+    <link rel="stylesheet" href="flights.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar (Filters) -->
+        <aside class="sidebar">
+            <h2>Filters</h2>
+            <div class="filter-section">
+                <h4>Flight Class</h4>
+                <label><input type="checkbox" class="flight-filter" value="economy"> Economy</label>
+                <label><input type="checkbox" class="flight-filter" value="business"> Business</label>
+                <label><input type="checkbox" class="flight-filter" value="student"> Student</label>
+            </div>
+
+            <div class="filter-section">
+                <h4>Arrival Time</h4>
+                <button class="time-filter" data-time="12am - 6am">12am - 6am</button>
+                <button class="time-filter" data-time="6am - 12pm">6am - 12pm</button>
+                <button class="time-filter" data-time="12pm - 6pm">12pm - 6pm</button>
+                <button class="time-filter" data-time="6pm - 12am">6pm - 12am</button>
+            </div>
+
+            <div class="filter-section">
+                <h4>Price Range</h4>
+                <div class="price-range">
+                    <input type="range" id="price-slider" min="1000" max="10000" value="10000" step="500">
+                    <span id="price-value">₹10000</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content (Available Flights) -->
+        <main class="main-content">
+            <section id="flights">
+                <div class="search-header">
+                    <h2>Available Flights</h2>
+                    <div class="search-info">
+                        <span id="route-info"></span>
+                        <span id="flight-count"></span>
+                    </div>
+                </div>
+
+                <!-- Loading State -->
+                <div id="loading" class="loading-state">
+                    <div class="spinner"></div>
+                    <p>Searching for flights...</p>
+                </div>
+
+                <!-- No Results State -->
+                <div id="no-results" class="no-results" style="display: none;">
+                    <i class="fas fa-plane-slash"></i>
+                    <h3>No flights found</h3>
+                    <p>Try adjusting your search criteria or dates.</p>
+                </div>
+
+                <!-- Flight Results -->
+                <div id="flight-results" class="listing" style="display: none;">
+                    <!-- Dynamic flight items will be inserted here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Include the flight API service -->
+    <script src="flight-api.js"></script>
+    <script src="flights.js"></script>
+    <script>
+        // Initialize flight data service
+        const flightService = new FlightDataService();
+        let allFlights = [];
+        let filteredFlights = [];
+
+        // Function to extract URL parameters
+        function getUrlParams() {
+            const params = {};
+            const queryString = window.location.search.substring(1);
+            const pairs = queryString.split("&");
+            pairs.forEach(pair => {
+                const [key, value] = pair.split("=");
+                params[key] = decodeURIComponent(value);
+            });
+            return params;
+        }
+
+        // Format time for display
+        function formatTime(time) {
+            const [hours, minutes] = time.split(':');
+            const hour = parseInt(hours);
+            const ampm = hour >= 12 ? 'PM' : 'AM';
+            const displayHour = hour % 12 || 12;
+            return `${displayHour}:${minutes} ${ampm}`;
+        }
+
+        // Create flight item HTML
+        function createFlightItem(flight) {
+            return `
+                <div class="flight-item animate__animated animate__fadeIn" data-flight-id="${flight.id}">
+                    <div class="flight-header">
+                        <h3>${flight.airline}</h3>
+                        <span class="flight-number">${flight.flightNumber}</span>
+                    </div>
+                    <div class="flight-timings">
+                        <div class="departure">
+                            <p><i class="fas fa-plane-departure"></i> <strong>Depart:</strong> ${formatTime(flight.departureTime)}</p>
+                            <p class="location">${flight.from} (${flight.fromCode})</p>
+                        </div>
+                        <div class="duration">
+                            <i class="fas fa-clock"></i>
+                            <span>${flight.duration}</span>
+                        </div>
+                        <div class="arrival">
+                            <p><i class="fas fa-plane-arrival"></i> <strong>Arrive:</strong> ${formatTime(flight.arrivalTime)}</p>
+                            <p class="location">${flight.to} (${flight.toCode})</p>
+                        </div>
+                    </div>
+                    <div class="flight-details">
+                        <p><strong>Class:</strong> ${flight.class}</p>
+                        <p><strong>Stops:</strong> ${flight.stops}</p>
+                        <p><strong>Seats:</strong> ${flight.availableSeats} available</p>
+                    </div>
+                    <div class="flight-price">
+                        <span class="price">₹${flight.price}</span>
+                        <button class="book-button" onclick="bookNow('${flight.airline}', '₹${flight.price}', '${formatTime(flight.departureTime)}', '${formatTime(flight.arrivalTime)}', '${flight.from}', '${flight.to}')">Book Now</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Display flights
+        function displayFlights(flights) {
+            const resultsContainer = document.getElementById('flight-results');
+            const noResults = document.getElementById('no-results');
+            const flightCount = document.getElementById('flight-count');
+
+            if (flights.length === 0) {
+                resultsContainer.style.display = 'none';
+                noResults.style.display = 'block';
+                flightCount.textContent = '0 flights found';
+            } else {
+                resultsContainer.style.display = 'block';
+                noResults.style.display = 'none';
+                flightCount.textContent = `${flights.length} flights found`;
+
+                resultsContainer.innerHTML = flights.map(flight => createFlightItem(flight)).join('');
+            }
+        }
+
+        // Apply filters
+        function applyFilters() {
+            let filtered = [...allFlights];
+
+            // Apply time filter
+            const activeTimeFilter = document.querySelector('.time-filter.active');
+            if (activeTimeFilter) {
+                const timeRange = activeTimeFilter.getAttribute('data-time');
+                filtered = flightService.filterByTimeRange(filtered, timeRange);
+            }
+
+            // Apply class filter
+            const selectedClasses = Array.from(document.querySelectorAll('.flight-filter:checked'))
+                .map(checkbox => checkbox.value);
+            if (selectedClasses.length > 0) {
+                filtered = filtered.filter(flight =>
+                    selectedClasses.some(cls => flight.class.toLowerCase().includes(cls.toLowerCase()))
+                );
+            }
+
+            // Apply price filter
+            const maxPrice = parseInt(document.getElementById('price-slider').value);
+            filtered = filtered.filter(flight => flight.price <= maxPrice);
+
+            filteredFlights = filtered;
+            displayFlights(filtered);
+        }
+
+        // Initialize the page
+        async function initializePage() {
+            const params = getUrlParams();
+            const from = params.from || 'Delhi';
+            const to = params.to || 'Mumbai';
+
+            // Update route info
+            document.getElementById('route-info').textContent = `${from} → ${to}`;
+
+            // Show loading
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('flight-results').style.display = 'none';
+            document.getElementById('no-results').style.display = 'none';
+
+            try {
+                // Fetch flight data
+                const response = await flightService.fetchFlights(from, to);
+
+                if (response.success) {
+                    allFlights = response.data;
+                    filteredFlights = [...allFlights];
+
+                    // Hide loading and display flights
+                    document.getElementById('loading').style.display = 'none';
+                    displayFlights(filteredFlights);
+                } else {
+                    throw new Error('Failed to fetch flights');
+                }
+            } catch (error) {
+                console.error('Error fetching flights:', error);
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('no-results').style.display = 'block';
+            }
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize page
+            initializePage();
+
+            // Time filter buttons
+            document.querySelectorAll('.time-filter').forEach(button => {
+                button.addEventListener('click', function () {
+                    document.querySelectorAll('.time-filter').forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    applyFilters();
+                });
+            });
+
+            // Class filter checkboxes
+            document.querySelectorAll('.flight-filter').forEach(checkbox => {
+                checkbox.addEventListener('change', applyFilters);
+            });
+
+            // Price slider
+            const priceSlider = document.getElementById('price-slider');
+            const priceValue = document.getElementById('price-value');
+
+            priceSlider.addEventListener('input', function () {
+                priceValue.textContent = `₹${this.value}`;
+                applyFilters();
+            });
+        });
+
+        function bookNow(ticketName, ticketPrice, departTime, arriveTime, departLocation, arriveLocation) {
+            // Redirect to the details page with flight details as URL parameters
+            window.location.href = `payment.php?ticketName=${encodeURIComponent(ticketName)}&ticketPrice=${encodeURIComponent(ticketPrice)}&departTime=${encodeURIComponent(departTime)}&arriveTime=${encodeURIComponent(arriveTime)}&departLocation=${encodeURIComponent(departLocation)}&arriveLocation=${encodeURIComponent(arriveLocation)}`;
+        }
+    </script>
+</body>
+
+</html>

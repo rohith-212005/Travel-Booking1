@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register - Travel Booking</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        :root {
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-12: 3rem;
+            --radius: 8px;
+            --neutral-100: #f3f4f6;
+            --neutral-300: #d1d5db;
+            --neutral-500: #6b7280;
+            --neutral-600: #4b5563;
+            --transition-fast: 0.3s;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #fff;
+        }
+
+        .auth-page {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .auth-image {
+            flex: 1;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.pexels.com/photos/4353813/pexels-photo-4353813.jpeg') center/cover no-repeat;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: var(--space-12);
+        }
+
+        .auth-image h2 {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-4);
+        }
+
+        .auth-image p {
+            font-size: 1.1rem;
+            max-width: 400px;
+        }
+
+        .auth-form {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: var(--space-6);
+        }
+
+        .form-wrapper {
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .form-wrapper h1 {
+            text-align: center;
+            margin-bottom: var(--space-4);
+        }
+
+        .form-group {
+            margin-bottom: var(--space-4);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--neutral-300);
+            border-radius: var(--radius);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-top: var(--space-4);
+        }
+
+        @media (max-width: 768px) {
+            .auth-page {
+                flex-direction: column;
+            }
+
+            .auth-image {
+                min-height: 250px;
+                text-align: center;
+                padding: var(--space-8);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="auth-page">
+    <div class="auth-image">
+        <h2>Begin Your Journey</h2>
+        <p>Create an account to manage your bookings and get exclusive deals!</p>
+    </div>
+    <div class="auth-form">
+        <div class="form-wrapper">
+            <h1>Create Your Account</h1>
+            <form action="register.php"    method="POST">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" name="fullname" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" name="phone" pattern="[0-9]{10}" required>
+                </div>
+                <div class="form-group">
+                    <label>Gender</label>
+                    <select name="gender" required>
+                        <option value="">Select</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Date of Birth</label>
+                    <input type="date" name="dob" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" id="confirm_password" name="confirm_password" required>
+                </div>
+                <button type="submit" name="register" class="btn">Register</button>
+            </form>
+            <?php if (isset($error_message)): ?>
+                <p class="error-message"><?= htmlspecialchars($error_message); ?></p>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
+
+<script>
+    const password = document.getElementById('password');
+    const confirmPassword = document.getElementById('confirm_password');
+
+    function validatePassword() {
+        if (password.value !== confirmPassword.value) {
+            confirmPassword.setCustomValidity("Passwords don't match");
+        } else {
+            confirmPassword.setCustomValidity('');
+        }
+    }
+
+    password.addEventListener('change', validatePassword);
+    confirmPassword.addEventListener('keyup', validatePassword);
+</script>
+</body>
+</html>

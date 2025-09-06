@@ -1,0 +1,109 @@
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.ticket-container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    padding: 30px;
+    width: 450px;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.ticket-header {
+    background: #2c3e50;
+    color: white;
+    padding: 15px;
+    border-radius: 10px 10px 0 0;
+    margin: -30px -30px 20px -30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ticket-header h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.ticket-status {
+    background: #27ae60;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* Highlighted style for From, To, and Date */
+.highlight {
+    display: inline-block;
+    background: #f7f9fc;
+    color: #2c3e50;
+    padding: 8px 12px;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #d6e4f0;
+    margin-left: 5px;
+}
+
+.ticket-details {
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.ticket-details p {
+    margin: 12px 0;
+    font-size: 16px;
+    color: #444;
+}
+
+.ticket-details strong {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.qr-code {
+    margin: 20px 0;
+}
+
+.ticket-footer {
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    font-size: 14px;
+    color: #666;
+}
+
+.ticket-footer button {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.ticket-footer button:hover {
+    background: #2980b9;
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+    .ticket-container {
+        width: 90%;
+        padding: 20px;
+    }
+}

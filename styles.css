@@ -1,0 +1,202 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f7f9fb;
+    color: #2c3e50;
+    animation: fadeIn 1s ease-in-out; /* Added page load animation */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: #2c3e50;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.navbar:hover {
+    background-color: #1a242f;
+}
+
+.navbar-menu a {
+    color: #b0b5bd;
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+.navbar-menu a:hover {
+    color: #a0a3ab;
+    transition: color 0.2s ease;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(44, 62, 80, 0.6), rgba(52, 73, 94, 0.6)), url('hero-image.jpg') no-repeat center center;
+    background-size: cover;
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+    animation: slideInFromTop 1.5s ease; /* Slide-in animation */
+}
+
+@keyframes slideInFromTop {
+    from { transform: translateY(-100px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.hero h1 {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 20px;
+}
+
+/* Booking Categories Styling */
+.booking-categories {
+    display: flex;
+    justify-content: space-around;
+    padding: 30px;
+    background-color: #ecf0f1;
+    animation: fadeInUp 1s ease-in-out;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.category {
+    text-align: center;
+    color: #34495e;
+    cursor: pointer;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+}
+
+.category:hover {
+    transform: scale(1.05);
+    background-color: #4b6584;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Search Form Styling */
+.search-form {
+    background-color: #ffffff;
+    padding: 30px;
+    margin: 30px auto;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out; /* Added form load animation */
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+}
+
+/* Search Button Styling */
+button {
+    background-color: #2980b9; /* Changed button color to blue */
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Added hover effects */
+}
+
+button:hover {
+    background-color: #1e6d9a;
+    transform: translateY(-2px); /* Small lift on hover */
+}
+
+/* Results Section Styling */
+.results-section {
+    background-color: #f7f9fb;
+    padding: 30px;
+    margin: 30px auto;
+    max-width: 900px;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+}
+
+.results-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #dcdde1;
+}
+
+th {
+    background-color: #34495e;
+    color: white;
+}
+
+/* Filter Options */
+.filter-options {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.filter-options label {
+    margin-right: 10px;
+}
+
+.filter-options input,
+.filter-options select {
+    margin-right: 20px;
+}
+
+/* Footer Styling */
+.footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+}
+.logo {
+    width: 150px; /* Decrease width */
+    height: 25px; /* Keep aspect ratio */
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking - TravelBooking</title>
+    <link rel="stylesheet" href="hotals.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Filters</h2>
+            <div class="filter-section">
+                <h4>Star Rating</h4>
+                <label><input type="checkbox"> 5-Star</label>
+                <label><input type="checkbox"> 4-Star</label>
+                <label><input type="checkbox"> 3-Star</label>
+            </div>
+            <div class="filter-section">
+                <h4>Amenities</h4>
+                <label><input type="checkbox"> Free Breakfast</label>
+                <label><input type="checkbox"> Free Wi-Fi</label>
+                <label><input type="checkbox"> Pool</label>
+            </div>
+        </aside>
+
+        <!-- Hotel Listings -->
+        <main class="hotel-list">
+            <div class="hotel-item">
+                <h3>Grand Hotel</h3>
+                <p>5-Star Hotel</p>
+                <span>₹3,000/night</span>
+                <button class="book-button" onclick="goToPayment('Grand Hotel', '3000')">Book Now</button>
+            </div>
+            <div class="hotel-item">
+                <h3>Taj Hotal</h3>
+                <p>5-Star Hotel</p>
+                <span>₹5,000/night</span>
+                <button class="book-button" onclick="goToPayment('Taj Hotal', '5000')">Book Now</button>
+            </div>
+
+
+            <!-- Repeat hotel-item blocks for more hotels -->
+        </main>
+    </div>
+
+    <script>
+        function goToPayment(hotelName, price) {
+            const url = `payment.php?ticketName=${hotelName}&ticketPrice=${price}`;
+            window.location.href = url;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+/* buses.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #f5f5f5;
+}
+
+.container {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 25%;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h2 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.filter-section h4 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.filter-section label,
+.filter-section button {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+button {
+    padding: 8px;
+    width: 100%;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Bus Listing Styles */
+.bus-list {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.bus-item {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bus-item h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.bus-item p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.bus-item span {
+    font-size: 16px;
+    color: #007bff;
+}
+
+.book-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.book-button:hover {
+    background-color: #0056b3;
+}

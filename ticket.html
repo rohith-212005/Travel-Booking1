@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Ticket</title>
+    <link rel="stylesheet" href="ticket.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+    <div class="ticket-container">
+        <div class="ticket-header">
+            <h1>Travel Ticket</h1>
+            <span class="ticket-status">Payment Confirmed</span>
+        </div>
+        <div class="ticket-details">
+            <p><strong>Passenger Name:</strong> <span id="passenger-name"></span></p>
+            <p><strong>From:</strong> <span id="from-location" class="highlight">N/A</span></p>
+            <p><strong>To:</strong> <span id="to-location" class="highlight">N/A</span></p>
+            <p><strong>Date:</strong> <span id="travel-date" class="highlight">N/A</span></p>
+            <p><strong>Ticket Type:</strong> <span id="ticket-name"></span></p>
+            <p><strong>Seat Number:</strong> <span id="seat-number"></span></p>
+            <p><strong>Ticket Number:</strong> <span id="ticket-number"></span></p>
+            <p><strong>Price:</strong> <span id="ticket-price"></span></p>
+        </div>
+        <div class="qr-code" id="qrcode"></div>
+        <div class="ticket-footer">
+            <p>Thank you for your purchase! Please present this ticket at boarding.</p>
+            <button onclick="window.print()">Download / Print Ticket</button>
+        </div>
+    </div>
+
+    <script src="ticket.js"></script>
+</body>
+</html>
