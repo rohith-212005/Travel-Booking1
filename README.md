@@ -42,7 +42,7 @@ All outputs were validated and adapted manually.
 ---
 
 ## 📸 Demo
-🔗 https://drive.google.com/file/d/1UeKyuIdsZYAJIvTdRlu1fnZNyS9ZgZfC/view?usp=drive_link
+🔗 https://drive.google.com/file/d/1lTEqcWYfYFkpitTBXv46w0bxKbuDj0EM/view?usp=sharing
 
 ---
 
