@@ -1,0 +1,19 @@
+# Database configuration
+backend/db-connection.php
+
+# PHP logs and errors
+*.log
+error_log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+
+# Temp files
+tmp/
+temp/

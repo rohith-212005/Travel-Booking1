@@ -1,0 +1,121 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.ticket-container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    padding: 30px;
+    width: 450px;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* ✅ Background logo starts below header */
+.ticket-container::after {
+    content: "";
+    position: absolute;
+    top: 100px;
+    /* pushes background below the header */
+    left: 100px;
+    right: 20px;
+    bottom: 100px;
+    background: url('/original_logo-removebg-preview.png') no-repeat center bottom;
+    background-size: 1100px;
+    /* increase/decrease logo size */
+    opacity: 0.20;
+    /* watermark effect */
+    z-index: 0;
+}
+
+/* Keep content above background */
+.ticket-header,
+.ticket-details,
+.qr-code,
+.ticket-footer {
+    position: relative;
+    z-index: 1;
+}
+
+.ticket-header {
+    background: #2c3e50;
+    color: white;
+    padding: 15px;
+    border-radius: 10px 10px 0 0;
+    margin: -30px -30px 20px -30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ticket-header h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.ticket-status {
+    background: #27ae60;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.ticket-details {
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.ticket-details p {
+    margin: 12px 0;
+    font-size: 16px;
+    color: #444;
+}
+
+.ticket-details strong {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.qr-code {
+    margin: 20px 0;
+}
+
+.ticket-footer {
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    font-size: 14px;
+    color: #666;
+}
+
+.ticket-footer button {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.ticket-footer button:hover {
+    background: #2980b9;
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+    .ticket-container {
+        width: 90%;
+        padding: 20px;
+    }
+}
