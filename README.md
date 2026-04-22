@@ -4,7 +4,14 @@ A comprehensive web-based platform for booking flights, hotels, trains, buses, a
 
 🌐 Live Demo
 
-👉 http://56.228.26.179/
+🚀 AWS Cloud Deployment (EC2 Instance)
+🔗 http://56.228.26.179/
+
+⚙️ Deployment Details
+Hosted on AWS EC2 (Linux server)
+Apache + PHP environment
+MySQL database configured
+Public IP-based access
 
 ## 📁 Project Structure
 
