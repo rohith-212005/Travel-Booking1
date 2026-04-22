@@ -2,6 +2,10 @@
 
 A comprehensive web-based platform for booking flights, hotels, trains, buses, and cabs with a professional login system and payment integration.
 
+🌐 Live Demo
+
+👉 http://56.228.26.179/
+
 ## 📁 Project Structure
 
 This project is organized into a clean directory structure for better maintainability:
