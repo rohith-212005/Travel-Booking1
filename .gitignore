@@ -1,5 +1,4 @@
 # Database configuration
-backend/db-connection.php
 
 # PHP logs and errors
 *.log
